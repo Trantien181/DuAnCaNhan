@@ -1,6 +1,6 @@
 package com.example.WebsiteBanHang2.Service.impl;
 
-import com.example.WebsiteBanHang2.Dto.HoaDonChiTietDTO;
+import com.example.WebsiteBanHang2.Model.HoaDonChiTiet;
 import com.example.WebsiteBanHang2.Repository.HoaDonChiTietRepository;
 import com.example.WebsiteBanHang2.Service.HoaDonChiTietService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,23 +14,23 @@ public class HoaDonChiTietServiceImpl implements HoaDonChiTietService {
     HoaDonChiTietRepository hoaDonChiTietRepository;
 
     @Override
-    public List<HoaDonChiTietDTO> getList() {
+    public List<HoaDonChiTiet> getList() {
         return hoaDonChiTietRepository.findAll();
     }
 
     @Override
-    public HoaDonChiTietDTO getHoaDonChiTietById(Integer id) {
+    public HoaDonChiTiet getHoaDonChiTietById(Integer id) {
         return hoaDonChiTietRepository.findById(id).orElse(null);
     }
 
     @Override
-    public HoaDonChiTietDTO createEndUpdateHoaDonChiTiet(HoaDonChiTietDTO hoaDonChiTietDTO) {
+    public HoaDonChiTiet createEndUpdateHoaDonChiTiet(HoaDonChiTiet hoaDonChiTietDTO) {
         return hoaDonChiTietRepository.save(hoaDonChiTietDTO);
     }
 
     @Override
     public void deleteHoaDonChiTiet(Integer id) {
-        HoaDonChiTietDTO hoaDonChiTietDTO = getHoaDonChiTietById(id);
+        HoaDonChiTiet hoaDonChiTietDTO = getHoaDonChiTietById(id);
         if (hoaDonChiTietDTO != null) {
             hoaDonChiTietRepository.delete(hoaDonChiTietDTO);
         }else {}
