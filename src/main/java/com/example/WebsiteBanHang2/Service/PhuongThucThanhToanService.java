@@ -4,7 +4,6 @@ import com.example.WebsiteBanHang2.Dto.ChatLieuDTO;
 import com.example.WebsiteBanHang2.Dto.PhuongThucThanhToanDTO;
 
 import java.util.List;
-
 public interface PhuongThucThanhToanService {
     List<PhuongThucThanhToanDTO> getList();
     PhuongThucThanhToanDTO getPhuongThucThanhToanById(Integer id);

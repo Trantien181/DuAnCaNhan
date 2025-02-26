@@ -34,7 +34,7 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
         if (sanPhamChiTietDTO != null) {
             sanPhamChiTietRepository.delete(sanPhamChiTietDTO);
         } else {
-
+            sanPhamChiTietRepository.deleteById(id);
         }
     }
 }
