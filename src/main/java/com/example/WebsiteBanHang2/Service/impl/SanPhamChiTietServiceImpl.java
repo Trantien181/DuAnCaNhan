@@ -12,6 +12,7 @@ import java.util.List;
 public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
     @Autowired
     SanPhamChiTietRepository sanPhamChiTietRepository;
+
     @Override
     public List<SanPhamChiTietDTO> getList() {
         return sanPhamChiTietRepository.findAll();
@@ -30,9 +31,9 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
     @Override
     public void deleteSanPhamChiTiet(Integer id) {
         SanPhamChiTietDTO sanPhamChiTietDTO = sanPhamChiTietRepository.findById(id).orElse(null);
-        if(sanPhamChiTietDTO != null){
+        if (sanPhamChiTietDTO != null) {
             sanPhamChiTietRepository.delete(sanPhamChiTietDTO);
-        }else {
+        } else {
 
         }
     }
