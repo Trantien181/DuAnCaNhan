@@ -14,21 +14,27 @@ public class PhuongThucThanhToanServiceImpl implements PhuongThucThanhToanServic
 
     @Override
     public List<PhuongThucThanhToanDTO> getList() {
-        return List.of();
+        return phuongThuocThanhToanRepository.findAll();
     }
 
     @Override
     public PhuongThucThanhToanDTO getPhuongThucThanhToanById(Integer id) {
-        return null;
+        return phuongThuocThanhToanRepository.findById(id).orElse(null);
     }
 
     @Override
     public PhuongThucThanhToanDTO createEndUpdatePhuongThucThanhToan(PhuongThucThanhToanDTO phuongThucThanhToanDTO) {
-        return null;
+        return phuongThuocThanhToanRepository.save(phuongThucThanhToanDTO);
     }
 
     @Override
     public void deletePhuongThucThanhToan(Integer id) {
+        PhuongThucThanhToanDTO phuongThucThanhToanDTO = phuongThuocThanhToanRepository.findById(id).orElse(null);
+        if (phuongThucThanhToanDTO != null) {
+            phuongThuocThanhToanRepository.deleteById(id);
+        }
+        else {
 
+        }
     }
 }
