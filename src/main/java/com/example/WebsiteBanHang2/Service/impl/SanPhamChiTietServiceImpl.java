@@ -19,16 +19,21 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
 
     @Override
     public SanPhamChiTietDTO getSanPhamChiTietById(Integer id) {
-        return null;
+        return sanPhamChiTietRepository.findById(id).orElse(null);
     }
 
     @Override
     public SanPhamChiTietDTO createEndUpdateSanPhamChiTiet(SanPhamChiTietDTO sanPhamChiTietDTO) {
-        return null;
+        return sanPhamChiTietRepository.save(sanPhamChiTietDTO);
     }
 
     @Override
     public void deleteSanPhamChiTiet(Integer id) {
-
+        SanPhamChiTietDTO sanPhamChiTietDTO = sanPhamChiTietRepository.findById(id).orElse(null);
+        if(sanPhamChiTietDTO != null){
+            sanPhamChiTietRepository.delete(sanPhamChiTietDTO);
+        }else {
+            
+        }
     }
 }
