@@ -12,8 +12,9 @@ public class SanPham {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "id_danh_muc")
-    private Integer idDanhMuc;
+    @ManyToOne
+    @JoinColumn(name = "id_danh_muc")
+    private DanhMuc idDanhMuc;
 
     @Column(name = "ten_san_pham")
     private String tenSanPham;

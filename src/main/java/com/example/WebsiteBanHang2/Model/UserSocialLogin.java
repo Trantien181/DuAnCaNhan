@@ -3,6 +3,8 @@ package com.example.WebsiteBanHang2.Model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Data
 @Entity
 @Table(name = "user_social_login")
@@ -25,6 +27,6 @@ public class UserSocialLogin {
     private String email;
 
     @Column(name = "created_at")
-    private java.sql.Timestamp createdAt;
+    private LocalDate createdAt;
 
 }

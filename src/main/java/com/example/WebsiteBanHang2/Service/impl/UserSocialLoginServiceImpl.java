@@ -9,34 +9,55 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserSocialLoginServiceImpl implements UserSocialLoginService {
     @Autowired
     UserSocialLoginRepository userSocialLoginRepository;
+    private UserSocialLoginDTO convertToDTO(UserSocialLogin userSocialLogin) {
+        UserSocialLoginDTO userSocialLoginDTO = new UserSocialLoginDTO();
+        userSocialLoginDTO.setId(userSocialLogin.getId());
+        userSocialLoginDTO.setSocialId(userSocialLogin.getSocialId());
+        userSocialLoginDTO.setUserId(userSocialLogin.getUserId());
+        userSocialLoginDTO.setEmail(userSocialLogin.getEmail());
+        userSocialLoginDTO.setProvider(userSocialLogin.getProvider());
+        userSocialLoginDTO.setCreatedAt(userSocialLogin.getCreatedAt());
+        return userSocialLoginDTO;
+    }
+    private UserSocialLogin convertToEntity(UserSocialLoginDTO userSocialLoginDTO) {
+        UserSocialLogin userSocialLogin = new UserSocialLogin();
+        userSocialLogin.setId(userSocialLoginDTO.getId());
+        userSocialLogin.setSocialId(userSocialLoginDTO.getSocialId());
+        userSocialLogin.setUserId(userSocialLoginDTO.getUserId());
+        userSocialLogin.setEmail(userSocialLoginDTO.getEmail());
+        userSocialLogin.setProvider(userSocialLoginDTO.getProvider());
+        userSocialLogin.setCreatedAt(userSocialLoginDTO.getCreatedAt());
+        return userSocialLogin;
+    }
 
     @Override
     public List<UserSocialLoginDTO> getList() {
-        return userSocialLoginRepository.findAll();
+        List<UserSocialLogin> userSocialLogins = userSocialLoginRepository.findAll();
+        return userSocialLogins.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
     @Override
     public UserSocialLoginDTO getUserSocialLoginById(Integer id) {
-        return userSocialLoginRepository.findById(id).orElse(null);
+        UserSocialLogin userSocialLogin = userSocialLoginRepository.findById(id).orElseThrow(() -> new RuntimeException("User Social không tồn tại id này: " + id));
+        return convertToDTO(userSocialLogin);
     }
 
     @Override
     public UserSocialLoginDTO createEndUpdateUserSocialLogin(UserSocialLoginDTO userSocialLoginDTO) {
-        return userSocialLoginRepository.save(userSocialLoginDTO);
+        UserSocialLogin userSocialLogin = convertToEntity(userSocialLoginDTO);
+        UserSocialLogin savedUserSocialLogin = userSocialLoginRepository.save(userSocialLogin);
+        return convertToDTO(savedUserSocialLogin);
     }
 
     @Override
     public void deleteUserSocialLogin(Integer id) {
-        UserSocialLoginDTO userSocialLoginDTO = userSocialLoginRepository.findById(id).orElse(null);
-        if(userSocialLoginDTO != null){
-            userSocialLoginRepository.delete(userSocialLoginDTO);
-        }else{
-
-        }
+        UserSocialLogin userSocialLogin = userSocialLoginRepository.findById(id).orElseThrow(() -> new RuntimeException("User Social không tồn tại id này: " + id));
+        userSocialLoginRepository.delete(userSocialLogin);
     }
 }

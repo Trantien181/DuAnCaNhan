@@ -1,7 +1,11 @@
 package com.example.WebsiteBanHang2.Model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+import java.time.LocalDate;
+
+@Data
 @Entity
 @Table(name = "user_account")
 public class UserAccount {
@@ -23,10 +27,10 @@ public class UserAccount {
     private Byte status;
 
     @Column(name = "last_login")
-    private java.sql.Timestamp lastLogin;
+    private LocalDate lastLogin;
 
     @Column(name = "created_at")
-    private java.sql.Timestamp createdAt;
+    private LocalDate createdAt;
 
 
 }
