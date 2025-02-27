@@ -3,6 +3,8 @@ package com.example.WebsiteBanHang2.Model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Data
 @Entity
 @Table(name = "refresh_token")
@@ -19,7 +21,7 @@ public class RefreshToken {
     private String token;
 
     @Column(name = "expiry_date")
-    private java.sql.Timestamp expiryDate;
+    private LocalDate expiryDate;
 
 
 }

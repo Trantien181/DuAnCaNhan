@@ -5,6 +5,39 @@
     <title>Title</title>
 </head>
 <body>
-
+add:
+<form action="/kieudang/add" method="post">
+    makieudang: <input type="text" name="maKieuDang"> <br>
+    tenkieudang: <input type="text" name="tenKieuDang"> <br>
+    trangthai: <input type="radio" name="trangThai" value="1"> mo
+    <input type="radio" name="trangThai" value="0"> dong <br>
+    <button>add</button>
+</form>
+hienthi:
+<table>
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>ma</th>
+        <th>ten</th>
+        <th>trangthai</th>
+        <th rowspan="2">hoatdong</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="kd: ${listKieuDang}">
+        <tr>
+            <td th:text="${kd.id}"></td>
+            <td th:text="${kd.maKieuDang}"></td>
+            <td th:text="${kd.tenKieuDang}"></td>
+            <td th:text="${kd.trangThai}"></td>
+            <td>
+                <a th:href="@{|/kieudang/detail/${kd.id}|}">detail</a>
+                <a th:href="@{|/kieudang/delete?id=${kd.id}|}">delete</a>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
 </body>
 </html>
