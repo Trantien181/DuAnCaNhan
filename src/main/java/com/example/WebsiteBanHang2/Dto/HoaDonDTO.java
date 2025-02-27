@@ -5,6 +5,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+
 @Data
 public class HoaDonDTO {
     private Integer id;
@@ -17,6 +18,5 @@ public class HoaDonDTO {
     private String trangThaiVanChuyen;
     private LocalDate ngayTao;
     private Byte trangThai;
-
 
 }

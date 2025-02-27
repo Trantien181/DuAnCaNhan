@@ -40,9 +40,9 @@ public class HoaDonServiceImpl implements HoaDonService {
         UserAccount userAccount = new UserAccount();
         userAccount.setId(hoaDonDTO.getIdKhachHang());
         hoaDon.setIdKhachHang(userAccount);
-        StaffInfo staffInfo = new StaffInfo();
-        staffInfo.setId(hoaDonDTO.getIdNhanVien());
-        hoaDon.setIdNhanVien(staffInfo);
+        UserAccount userAccount1 = new UserAccount();
+        userAccount1.setId(hoaDonDTO.getIdNhanVien());
+        hoaDon.setIdNhanVien(userAccount1);
         hoaDon.setMaHoaDon(hoaDonDTO.getMaHoaDon());
         hoaDon.setLoaiDon(hoaDonDTO.getLoaiDon());
         hoaDon.setTongTien(hoaDonDTO.getTongTien());

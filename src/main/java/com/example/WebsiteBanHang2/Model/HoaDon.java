@@ -15,13 +15,14 @@ public class HoaDon {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @ManyToOne
     @JoinColumn(name = "id_khach_hang")
     private UserAccount idKhachHang;
 
     @ManyToOne
     @JoinColumn(name = "id_nhan_vien")
-    private StaffInfo idNhanVien;
+    private UserAccount idNhanVien;
 
     @Column(name = "ma_hoa_don")
     private String maHoaDon;

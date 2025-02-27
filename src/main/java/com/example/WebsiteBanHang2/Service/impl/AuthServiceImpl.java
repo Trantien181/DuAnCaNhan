@@ -29,7 +29,7 @@ public class AuthServiceImpl implements AuthService {
         UserAccount userAccount = new UserAccount();
         userAccount.setEmail(dto.getEmail());
         userAccount.setPassword(passwordEncoder.encode(dto.getPassword()));
-        userAccount.setRole(UserAccount.Role.CUSTOMER);
+        userAccount.setRole("CUSTOMER");
         userAccount.setFirstName(dto.getFirstName());
         userAccount.setLastName(dto.getLastName());
         UserAccount saved = userAccountRepository.save(userAccount);
