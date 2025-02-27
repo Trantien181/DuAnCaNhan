@@ -21,7 +21,7 @@ public class UserAccount {
     private String password;
 
     @Column(name = "role")
-    private String role;
+    private Role role;
 
     @Column(name = "status")
     private Byte status;
@@ -32,5 +32,7 @@ public class UserAccount {
     @Column(name = "created_at")
     private LocalDate createdAt;
 
-
+    public enum Role {
+        ADMIN, STAFF, CUSTOMER
+    }
 }
