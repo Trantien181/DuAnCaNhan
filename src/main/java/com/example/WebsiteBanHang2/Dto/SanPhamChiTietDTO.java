@@ -1,6 +1,7 @@
 package com.example.WebsiteBanHang2.Dto;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
 public class SanPhamChiTietDTO {
@@ -108,19 +109,19 @@ public class SanPhamChiTietDTO {
         this.donGia = donGia;
     }
 
-    public LocalDate getNgayTao() {
+    public Timestamp getNgayTao() {
         return this.ngayTao;
     }
 
-    public void setNgayTao(LocalDate ngayTao) {
+    public void setNgayTao(Timestamp ngayTao) {
         this.ngayTao = ngayTao;
     }
 
-    public LocalDate getNgayCapNhat() {
+    public Timestamp getNgayCapNhat() {
         return this.ngayCapNhat;
     }
 
-    public void setNgayCapNhat(LocalDate ngayCapNhat) {
+    public void setNgayCapNhat(Timestamp ngayCapNhat) {
         this.ngayCapNhat = ngayCapNhat;
     }
 

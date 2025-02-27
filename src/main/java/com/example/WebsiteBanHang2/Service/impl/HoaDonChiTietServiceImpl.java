@@ -1,7 +1,10 @@
 package com.example.WebsiteBanHang2.Service.impl;
 
 import com.example.WebsiteBanHang2.Dto.HoaDonChiTietDTO; // Thêm import này, giả định có DTO
+import com.example.WebsiteBanHang2.Dto.HoaDonDTO;
+import com.example.WebsiteBanHang2.Model.HoaDon;
 import com.example.WebsiteBanHang2.Model.HoaDonChiTiet;
+import com.example.WebsiteBanHang2.Model.SanPhamChiTiet;
 import com.example.WebsiteBanHang2.Repository.HoaDonChiTietRepository;
 import com.example.WebsiteBanHang2.Service.HoaDonChiTietService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,20 +21,30 @@ public class HoaDonChiTietServiceImpl implements HoaDonChiTietService {
     private HoaDonChiTietDTO convertToDto(HoaDonChiTiet hoaDonChiTiet) {
         HoaDonChiTietDTO hoaDonChiTietDTO = new HoaDonChiTietDTO();
         hoaDonChiTietDTO.setId(hoaDonChiTiet.getId());
-        hoaDonChiTietDTO.setHoaDonId(hoaDonChiTiet.getHoaDon().getId());
-        hoaDonChiTietDTO.setSanPhamChiTietId(hoaDonChiTiet.getSanPhamChiTietId());
+        HoaDonDTO hoaDonDTO = new HoaDonDTO();
+        hoaDonDTO.setId(hoaDonChiTiet.getHoaDonId().getId());
+        hoaDonChiTietDTO.setHoaDon(hoaDonDTO);
+        hoaDonChiTietDTO.setSanPhamChiTietId(hoaDonChiTiet.getSanPhamChiTietId().getId());
         hoaDonChiTietDTO.setSoLuong(hoaDonChiTiet.getSoLuong());
         hoaDonChiTietDTO.setDonGia(hoaDonChiTiet.getDonGia());
+        hoaDonChiTietDTO.setThanhTien(hoaDonChiTiet.getThanhTien());
+        hoaDonChiTietDTO.setTrangThai(hoaDonChiTiet.getTrangThai());
         return hoaDonChiTietDTO;
     }
 
     private HoaDonChiTiet convertToEntity(HoaDonChiTietDTO hoaDonChiTietDTO) {
         HoaDonChiTiet hoaDonChiTiet = new HoaDonChiTiet();
         hoaDonChiTiet.setId(hoaDonChiTietDTO.getId());
-        hoaDonChiTiet.setHoaDon(new HoaDon(hoaDonChiTietDTO.getHoaDonId()));
-        hoaDonChiTiet.setSanPham(new SanPham(hoaDonChiTietDTO.getSanPhamId()));
+        HoaDon hoaDon = new HoaDon();
+        hoaDon.setId(hoaDonChiTietDTO.getHoaDon().getId());
+        hoaDonChiTiet.setHoaDonId(hoaDon);
+        SanPhamChiTiet sanPhamChiTiet = new SanPhamChiTiet();
+        sanPhamChiTiet.setId(hoaDonChiTietDTO.getSanPhamChiTietId());
+        hoaDonChiTiet.setSanPhamChiTietId(sanPhamChiTiet);
         hoaDonChiTiet.setSoLuong(hoaDonChiTietDTO.getSoLuong());
         hoaDonChiTiet.setDonGia(hoaDonChiTietDTO.getDonGia());
+        hoaDonChiTiet.setThanhTien(hoaDonChiTietDTO.getThanhTien());
+        hoaDonChiTiet.setTrangThai(hoaDonChiTietDTO.getTrangThai());
         return hoaDonChiTiet;
     }
 

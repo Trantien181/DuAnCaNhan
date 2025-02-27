@@ -1,5 +1,6 @@
 package com.example.WebsiteBanHang2.Dto;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
 public class RefreshTokenDTO {
@@ -32,11 +33,11 @@ public class RefreshTokenDTO {
         this.token = token;
     }
 
-    public LocalDate getExpiryDate() {
+    public Timestamp getExpiryDate() {
         return this.expiryDate;
     }
 
-    public void setExpiryDate(LocalDate expiryDate) {
+    public void setExpiryDate(Timestamp expiryDate) {
         this.expiryDate = expiryDate;
     }
 }

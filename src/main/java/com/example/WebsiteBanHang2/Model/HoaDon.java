@@ -20,7 +20,7 @@ public class HoaDon {
 
     @ManyToOne
     @JoinColumn(name = "id_nhan_vien")
-    private UserAccount idNhanVien;
+    private StaffInfo idNhanVien;
 
     @Column(name = "ma_hoa_don")
     private String maHoaDon;

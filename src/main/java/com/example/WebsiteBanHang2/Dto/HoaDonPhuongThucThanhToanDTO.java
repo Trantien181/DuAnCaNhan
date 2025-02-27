@@ -1,16 +1,14 @@
 package com.example.WebsiteBanHang2.Dto;
 
-import org.springframework.cglib.core.Local;
-
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.sql.Timestamp;
 
 public class HoaDonPhuongThucThanhToanDTO {
     private Integer id;
     private Integer hoaDonId;
     private Integer phuongThucThanhToanId;
     private BigDecimal soTienThanhToan;
-    private LocalDate ngayThucHienThanhToan;
+    private Timestamp ngayThucHienThanhToan;
     private String ghiChu;
 
     public Integer getId() {
@@ -45,11 +43,11 @@ public class HoaDonPhuongThucThanhToanDTO {
         this.soTienThanhToan = soTienThanhToan;
     }
 
-    public LocalDate getNgayThucHienThanhToan() {
+    public Timestamp getNgayThucHienThanhToan() {
         return this.ngayThucHienThanhToan;
     }
 
-    public void setNgayThucHienThanhToan(LocalDate ngayThucHienThanhToan) {
+    public void setNgayThucHienThanhToan(Timestamp ngayThucHienThanhToan) {
         this.ngayThucHienThanhToan = ngayThucHienThanhToan;
     }
 

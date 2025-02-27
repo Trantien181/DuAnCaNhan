@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 
 public class HoaDonChiTietDTO {
     private Integer id;
-    private Integer hoaDonId;
-    private Integer sanPhamChiTietId;
+    private HoaDonDTO hoaDon; // Thay Integer hoaDonId bằng HoaDonDTO
+    private Integer sanPhamChiTietId; // Giữ Integer nếu chỉ cần ID
     private Integer soLuong;
     private BigDecimal donGia;
     private BigDecimal thanhTien;
@@ -19,12 +19,12 @@ public class HoaDonChiTietDTO {
         this.id = id;
     }
 
-    public Integer getHoaDonId() {
-        return this.hoaDonId;
+    public HoaDonDTO getHoaDon() {
+        return this.hoaDon;
     }
 
-    public void setHoaDonId(Integer hoaDonId) {
-        this.hoaDonId = hoaDonId;
+    public void setHoaDon(HoaDonDTO hoaDon) {
+        this.hoaDon = hoaDon;
     }
 
     public Integer getSanPhamChiTietId() {
