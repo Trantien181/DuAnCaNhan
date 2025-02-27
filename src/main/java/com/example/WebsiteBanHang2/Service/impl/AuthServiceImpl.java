@@ -1,6 +1,7 @@
 package com.example.WebsiteBanHang2.Service.impl;
 
-import com.example.WebsiteBanHang2.Dto.RegisterRequestDTO;
+import com.example.WebsiteBanHang2.Model.LoginForm;
+import com.example.WebsiteBanHang2.Model.RegisterRequest;
 import com.example.WebsiteBanHang2.Model.CustomerInfo;
 import com.example.WebsiteBanHang2.Model.UserAccount;
 import com.example.WebsiteBanHang2.Repository.CustomerInfoRepository;
@@ -9,6 +10,8 @@ import com.example.WebsiteBanHang2.Service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -21,24 +24,35 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
     @Override
-    public UserAccount registerUser(RegisterRequestDTO dto) {
-        if(userAccountRepository.findByEmail(dto.getEmail()) != null){
-            throw new RuntimeException("Email đã được sử dụng");
+    public void register(RegisterRequest form) {
+        if (userAccountRepository.findByEmail(form.getEmail()) != null) {
+            throw new RuntimeException("Email đã được sử dụng!");
         }
-        UserAccount userAccount = new UserAccount();
-        userAccount.setEmail(dto.getEmail());
-        userAccount.setPassword(passwordEncoder.encode(dto.getPassword()));
-        userAccount.setRole("CUSTOMER");
-        userAccount.setFirstName(dto.getFirstName());
-        userAccount.setLastName(dto.getLastName());
-        UserAccount saved = userAccountRepository.save(userAccount);
+        UserAccount user = new UserAccount();
+        user.setEmail(form.getEmail());
+        user.setPassword(passwordEncoder.encode(form.getPassword()));
+        user.setFirstName(form.getFirstName());
+        user.setLastName(form.getLastName());
+        user.setRole("CUSTOMER");
+        UserAccount savedUser = userAccountRepository.save(user);
 
         CustomerInfo customerInfo = new CustomerInfo();
-        customerInfo.setUserId(saved);
-        customerInfo.setPhone(dto.getPhone());
-        customerInfo.setAddress(dto.getAddress());
+        customerInfo.setUserId(savedUser);
+        customerInfo.setPhone(form.getPhone());
+        customerInfo.setAddress(form.getAddress());
         customerInfoRepository.save(customerInfo);
-        return saved;
+    }
+
+    @Override
+    public UserAccount login(LoginForm form) {
+        UserAccount user = userAccountRepository.findByEmail(form.getEmail());
+        if (user == null || !passwordEncoder.matches(form.getPassword(), user.getPassword())) {
+            throw new RuntimeException("Email hoặc mật khẩu không đúng!");
+        }
+        user.setLastLogin(LocalDate.now());
+        userAccountRepository.save(user);
+        return user;
     }
 }

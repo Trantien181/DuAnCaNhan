@@ -1,9 +1,9 @@
-package com.example.WebsiteBanHang2.Dto;
+package com.example.WebsiteBanHang2.Model;
 
 import lombok.Data;
 
 @Data
-public class RegisterRequestDTO {
+public class RegisterRequest {
     private String email;
     private String password;
     private String firstName;

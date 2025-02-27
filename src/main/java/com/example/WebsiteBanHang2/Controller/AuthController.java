@@ -1,25 +1,47 @@
 package com.example.WebsiteBanHang2.Controller;
 
-import com.example.WebsiteBanHang2.Dto.RegisterRequestDTO;
+import com.example.WebsiteBanHang2.Model.LoginForm;
+import com.example.WebsiteBanHang2.Model.RegisterRequest;
 import com.example.WebsiteBanHang2.Model.UserAccount;
 import com.example.WebsiteBanHang2.Service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/auth")
 public class AuthController {
     @Autowired
     private AuthService authService;
 
-    @PostMapping("/register")
-    public String register(@RequestBody RegisterRequestDTO dto) {
-        UserAccount userAccount = authService.registerUser(dto);
+    @GetMapping("/register")
+    public String register(Model model) {
+        model.addAttribute("userForm", new RegisterRequest());
         return "Auth/Register";
+    }
+    @PostMapping("/register")
+    public String register(@ModelAttribute("userForm") RegisterRequest form, Model model) {
+        try {
+            authService.register(form);
+            return "redirect:/login";
+        } catch (RuntimeException e) {
+            model.addAttribute("error", e.getMessage());
+            return "Auth/Register";
+        }
+    }
+    @GetMapping("/login")
+    public String showLoginForm(Model model) {
+        model.addAttribute("loginForm", new LoginForm());
+        return "Auth/login";
+    }
+    @PostMapping("/login")
+    public String login(@ModelAttribute("loginForm") LoginForm form, Model model) {
+        try {
+            authService.login(form);
+            return "redirect:/chatlieu";
+        } catch (RuntimeException e) {
+            model.addAttribute("error", e.getMessage());
+            return "Auth/login";
+        }
     }
 }
