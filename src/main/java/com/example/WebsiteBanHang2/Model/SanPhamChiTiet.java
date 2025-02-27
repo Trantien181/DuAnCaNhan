@@ -14,30 +14,30 @@ public class SanPhamChiTiet {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(name = "san_pham_id")
-    private Integer sanPhamId;
-
-    @Column(name = "kich_thuoc_id")
-    private Integer kichThuocId;
-
-    @Column(name = "mau_sac_id")
-    private Integer mauSacId;
-
-    @Column(name = "chat_lieu_id")
-    private Integer chatLieuId;
-
-    @Column(name = "kieu_dang_id")
-    private Integer kieuDangId;
-
-    @Column(name = "co_ao_id")
-    private Integer coAoId;
-
-    @Column(name = "thiet_ke_id")
-    private Integer thietKeId;
-
-    @Column(name = "thuong_hieu_id")
-    private Integer thuongHieuId;
+    @ManyToOne
+    @JoinColumn(name = "san_pham_id")
+    private SanPham sanPhamId;
+    @ManyToOne
+    @JoinColumn(name = "kich_thuoc_id")
+    private KichThuoc kichThuocId;
+    @ManyToOne
+    @JoinColumn(name = "mau_sac_id")
+    private MauSac mauSacId;
+    @ManyToOne
+    @JoinColumn(name = "chat_lieu_id")
+    private ChatLieu chatLieuId;
+    @ManyToOne
+    @JoinColumn(name = "kieu_dang_id")
+    private KieuDang kieuDangId;
+    @ManyToOne
+    @JoinColumn(name = "co_ao_id")
+    private CoAo coAoId;
+    @ManyToOne
+    @JoinColumn(name = "thiet_ke_id")
+    private ThietKe thietKeId;
+    @ManyToOne
+    @JoinColumn(name = "thuong_hieu_id")
+    private ThuongHieu thuongHieuId;
 
     @Column(name = "so_luong")
     private Integer soLuong;

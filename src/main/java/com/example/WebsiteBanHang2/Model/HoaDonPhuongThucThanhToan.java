@@ -14,12 +14,12 @@ public class HoaDonPhuongThucThanhToan {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(name = "hoa_don_id")
-    private Integer hoaDonId;
-
-    @Column(name = "phuong_thuc_thanh_toan_id")
-    private Integer phuongThucThanhToanId;
+    @ManyToOne
+    @JoinColumn(name = "hoa_don_id")
+    private HoaDon hoaDonId;
+    @ManyToOne
+    @JoinColumn(name = "phuong_thuc_thanh_toan_id")
+    private PhuongThucThanhToan phuongThucThanhToanId;
 
     @Column(name = "so_tien_thanh_toan")
     private BigDecimal soTienThanhToan;

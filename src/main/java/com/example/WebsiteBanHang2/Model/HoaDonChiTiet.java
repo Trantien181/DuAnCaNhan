@@ -14,11 +14,12 @@ public class HoaDonChiTiet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "hoa_don_id")
-    private Integer hoaDonId;
-
-    @Column(name = "san_pham_chi_tiet_id")
-    private Integer sanPhamChiTietId;
+    @ManyToOne
+    @JoinColumn(name = "hoa_don_id")
+    private HoaDon hoaDonId;
+    @ManyToOne
+    @JoinColumn(name = "san_pham_chi_tiet_id")
+    private SanPhamChiTiet sanPhamChiTietId;
 
     @Column(name = "so_luong")
     private Integer soLuong;

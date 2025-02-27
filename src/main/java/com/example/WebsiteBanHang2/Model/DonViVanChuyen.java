@@ -14,7 +14,10 @@ public class DonViVanChuyen {
     private Integer id;
 
     @Column(name = "ten_don_vi")
-    private String tenDonVi; 
+    private String tenDonVi;
+
+    @Column(name = "phi_van_chuyen")
+    private Double phiVanChuyen;
 
     @Column(name = "ma_don_vi")
     private String maDonVi;

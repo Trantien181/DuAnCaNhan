@@ -14,12 +14,13 @@ public class HoaDon {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @ManyToOne
+    @JoinColumn(name = "id_khach_hang")
+    private UserAccount idKhachHang;
 
-    @Column(name = "id_khach_hang")
-    private Integer idKhachHang;
-
-    @Column(name = "id_nhan_vien")
-    private Integer idNhanVien;
+    @ManyToOne
+    @JoinColumn(name = "id_nhan_vien")
+    private UserAccount idNhanVien;
 
     @Column(name = "ma_hoa_don")
     private String maHoaDon;
@@ -30,8 +31,9 @@ public class HoaDon {
     @Column(name = "tong_tien")
     private BigDecimal tongTien;
 
-    @Column(name = "id_don_vi_van_chuyen")
-    private Integer idDonViVanChuyen;
+    @ManyToOne
+    @JoinColumn(name = "id_don_vi_van_chuyen")
+    private DonViVanChuyen idDonViVanChuyen;
 
     @Column(name = "trang_thai_van_chuyen")
     private String trangThaiVanChuyen;
