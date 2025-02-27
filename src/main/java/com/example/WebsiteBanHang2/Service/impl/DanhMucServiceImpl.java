@@ -8,32 +8,55 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class DanhMucServiceImpl implements DanhMucService {
     @Autowired
-    DanhMucRepository danhMucRepository;
+    private DanhMucRepository danhMucRepository;
+
+    private DanhMucDTO convertToDto(DanhMuc danhMuc) {
+        DanhMucDTO danhMucDTO = new DanhMucDTO();
+        danhMucDTO.setId(danhMuc.getId());
+        danhMucDTO.setMaDanhMuc(danhMuc.getMaDanhMuc());
+        danhMucDTO.setTenDanhMuc(danhMuc.getTenDanhMuc());
+        danhMucDTO.setTrangThai(danhMuc.getTrangThai());
+        return danhMucDTO;
+    }
+
+    private DanhMuc convertToEntity(DanhMucDTO danhMucDTO) {
+        DanhMuc danhMuc = new DanhMuc();
+        danhMuc.setId(danhMucDTO.getId());
+        danhMuc.setMaDanhMuc(danhMucDTO.getMaDanhMuc());
+        danhMuc.setTenDanhMuc(danhMucDTO.getTenDanhMuc());
+        danhMuc.setTrangThai(danhMucDTO.getTrangThai());
+        return danhMuc;
+    }
 
     @Override
     public List<DanhMucDTO> getList() {
-        return danhMucRepository.findAll();
+        List<DanhMuc> danhMucList = danhMucRepository.findAll();
+        return danhMucList.stream().map(this::convertToDto).collect(Collectors.toList());
     }
 
     @Override
     public DanhMucDTO getDanhMucById(Integer id) {
-        return danhMucRepository.findById(id).orElse(null);
+        DanhMuc danhMuc = danhMucRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Danh mục không tồn tại với ID: " + id));
+        return convertToDto(danhMuc);
     }
 
     @Override
     public DanhMucDTO createEndUpdateDanhMuc(DanhMucDTO danhMucDTO) {
-        return danhMucRepository.save(danhMucDTO);
+        DanhMuc danhMuc = convertToEntity(danhMucDTO);
+        DanhMuc danhMucSaved = danhMucRepository.save(danhMuc);
+        return convertToDto(danhMucSaved);
     }
 
     @Override
     public void deleteDanhMuc(Integer id) {
-        DanhMucDTO danhMucDTO = danhMucRepository.findById(id).orElse(null);
-        if (danhMucDTO != null) {
-            danhMucRepository.delete(danhMucDTO);
-        }else {}
+        DanhMuc danhMuc = danhMucRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Danh mục không tồn tại với ID: " + id));
+        danhMucRepository.delete(danhMuc);
     }
 }
