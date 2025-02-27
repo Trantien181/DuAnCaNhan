@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -46,10 +47,10 @@ public class SanPhamChiTiet {
     private BigDecimal donGia;
 
     @Column(name = "ngay_tao")
-    private java.sql.Timestamp ngayTao;
+    private LocalDate ngayTao;
 
     @Column(name = "ngay_cap_nhat")
-    private java.sql.Timestamp ngayCapNhat;
+    private LocalDate ngayCapNhat;
 
     @Column(name = "nguoi_cap_nhat")
     private String nguoiCapNhat;
