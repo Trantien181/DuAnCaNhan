@@ -1,6 +1,6 @@
 package com.example.WebsiteBanHang2.Dto;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
 
 public class UserAccountDTO {
     private Integer id;
@@ -8,8 +8,8 @@ public class UserAccountDTO {
     private String password;
     private String role;
     private Byte status;
-    private LocalDate lastLogin;
-    private LocalDate createdAt;
+    private Timestamp lastLogin;
+    private Timestamp createdAt;
 
     public Integer getId() {
         return this.id;
@@ -51,19 +51,19 @@ public class UserAccountDTO {
         this.status = status;
     }
 
-    public LocalDate getLastLogin() {
+    public Timestamp getLastLogin() {
         return this.lastLogin;
     }
 
-    public void setLastLogin(LocalDate lastLogin) {
+    public void setLastLogin(Timestamp lastLogin) {
         this.lastLogin = lastLogin;
     }
 
-    public LocalDate getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return this.createdAt;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 }

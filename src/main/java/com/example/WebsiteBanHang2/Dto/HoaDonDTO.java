@@ -2,7 +2,6 @@ package com.example.WebsiteBanHang2.Dto;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 
 public class HoaDonDTO {
     private Integer id;
@@ -13,7 +12,7 @@ public class HoaDonDTO {
     private BigDecimal tongTien;
     private Integer idDonViVanChuyen;
     private String trangThaiVanChuyen;
-    private LocalDate ngayTao;
+    private Timestamp ngayTao;
     private Byte trangThai;
 
     public Integer getId() {

@@ -1,13 +1,12 @@
 package com.example.WebsiteBanHang2.Dto;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
 
 public class RefreshTokenDTO {
     private Integer id;
     private Integer userId;
     private String token;
-    private LocalDate expiryDate;
+    private Timestamp expiryDate;
 
     public Integer getId() {
         return this.id;
