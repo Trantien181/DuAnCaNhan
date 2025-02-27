@@ -33,6 +33,7 @@ public class AuthServiceImpl implements AuthService {
         UserAccount saved = userAccountRepository.save(userAccount);
 
         CustomerInfo customerInfo = new CustomerInfo();
-        customerInfo.setUserId();
+//        customerInfo.setUserId();
+        return null;
     }
 }
