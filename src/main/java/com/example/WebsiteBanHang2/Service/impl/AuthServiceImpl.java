@@ -30,10 +30,15 @@ public class AuthServiceImpl implements AuthService {
         userAccount.setEmail(dto.getEmail());
         userAccount.setPassword(passwordEncoder.encode(dto.getPassword()));
         userAccount.setRole(UserAccount.Role.CUSTOMER);
+        userAccount.setFirstName(dto.getFirstName());
+        userAccount.setLastName(dto.getLastName());
         UserAccount saved = userAccountRepository.save(userAccount);
 
         CustomerInfo customerInfo = new CustomerInfo();
-//        customerInfo.setUserId();
-        return null;
+        customerInfo.setUserId(saved);
+        customerInfo.setPhone(dto.getPhone());
+        customerInfo.setAddress(dto.getAddress());
+        customerInfoRepository.save(customerInfo);
+        return saved;
     }
 }
