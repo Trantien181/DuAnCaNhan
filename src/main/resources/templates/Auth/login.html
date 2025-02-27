@@ -5,13 +5,15 @@
 </head>
 <body>
 <h1>Đăng nhập</h1>
-<div th:if="${error}" th:text="${error}" style="color: red;"></div>
-<form th:action="@{/login}" th:object="${loginForm}" method="post">
+<div th:if="${param.error}" style="color: red;">
+    Email hoặc mật khẩu không đúng!
+</div>
+<form th:action="@{/login}" method="post">
     <label>Email:</label>
-    <input type="email" th:field="*{email}" required><br>
+    <input type="email" name="username" required><br>
 
     <label>Mật khẩu:</label>
-    <input type="password" th:field="*{password}" required><br>
+    <input type="password" name="password" required><br>
 
     <button type="submit">Đăng nhập</button>
 </form>

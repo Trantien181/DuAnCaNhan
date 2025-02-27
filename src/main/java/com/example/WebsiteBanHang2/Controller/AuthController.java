@@ -34,14 +34,5 @@ public class AuthController {
         model.addAttribute("loginForm", new LoginForm());
         return "Auth/login";
     }
-    @PostMapping("/login")
-    public String login(@ModelAttribute("loginForm") LoginForm form, Model model) {
-        try {
-            authService.login(form);
-            return "redirect:/chatlieu";
-        } catch (RuntimeException e) {
-            model.addAttribute("error", e.getMessage());
-            return "Auth/login";
-        }
-    }
+
 }

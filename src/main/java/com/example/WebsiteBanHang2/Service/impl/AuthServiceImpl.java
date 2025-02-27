@@ -47,12 +47,26 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public UserAccount login(LoginForm form) {
-        UserAccount user = userAccountRepository.findByEmail(form.getEmail());
-        if (user == null || !passwordEncoder.matches(form.getPassword(), user.getPassword())) {
-            throw new RuntimeException("Email hoặc mật khẩu không đúng!");
-        }
-        user.setLastLogin(LocalDate.now());
-        userAccountRepository.save(user);
-        return user;
+//        System.out.println("Email nhập: " + form.getEmail());
+//        System.out.println("Mật khẩu nhập: " + form.getPassword());
+//
+//        UserAccount user = userAccountRepository.findByEmail(form.getEmail());
+//        if (user == null) {
+//            System.out.println("Không tìm thấy user với email: " + form.getEmail());
+//            throw new RuntimeException("Email hoặc mật khẩu không đúng!");
+//        }
+//
+//        System.out.println("Mật khẩu trong DB: " + user.getPassword());
+//        boolean matches = passwordEncoder.matches(form.getPassword(), user.getPassword());
+//        System.out.println("Kết quả so khớp mật khẩu: " + matches);
+//
+//        if (!matches) {
+//            throw new RuntimeException("Email hoặc mật khẩu không đúng!");
+//        }
+//
+//        user.setLastLogin(LocalDate.now());
+//        userAccountRepository.save(user);
+//        return user;
+            throw new UnsupportedOperationException("Use Spring Security for login");
     }
 }
