@@ -57,9 +57,13 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
     }
 
     @Override
-    public List<SanPhamChiTietDTO> getList() {
+    public List<SanPhamChiTietDTO> getListDTO() {
         List<SanPhamChiTiet> sanPhamChiTietList = sanPhamChiTietRepository.findAll();
         return sanPhamChiTietList.stream().map(this::convertToDto).collect(Collectors.toList());
+    }
+    @Override
+    public List<SanPhamChiTiet> getList() {
+        return sanPhamChiTietRepository.findAll();
     }
 
     @Override

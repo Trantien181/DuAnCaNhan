@@ -34,9 +34,13 @@ public class KieuDangServiceImpl implements KieuDangService {
     }
 
     @Override
-    public List<KieuDangDTO> getList() {
+    public List<KieuDangDTO> getListDTO() {
         List<KieuDang> kieuDangList = kieuDangRepository.findAll();
         return kieuDangList.stream().map(this::convertToDto).collect(Collectors.toList());
+    }
+    @Override
+    public List<KieuDang> getList() {
+        return kieuDangRepository.findAll();
     }
 
     @Override
