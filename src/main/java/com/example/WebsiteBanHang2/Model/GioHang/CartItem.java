@@ -11,6 +11,10 @@ public class CartItem {
     private BigDecimal donGia;
 
     public CartItem(Integer id, String tenSanPham, Integer soLuongMua, BigDecimal donGia) {
+        this.sanPhamChiTietId = id;
+        this.tenSanPham = tenSanPham;
+        this.soLuongMua = soLuongMua;
+        this.donGia = donGia;
     }
 
     public BigDecimal getThanhTien() {

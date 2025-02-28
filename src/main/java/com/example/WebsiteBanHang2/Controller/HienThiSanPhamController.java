@@ -32,7 +32,6 @@ public class HienThiSanPhamController {
     public String addToCart(@RequestParam("id") Integer sanPhamChiTietId,
                             @RequestParam("soLuongMua") Integer soLuongMua,
                             HttpSession session) {
-        System.out.println("soLuongMua: " + soLuongMua);
         SanPhamChiTietDTO product = sanPhamChiTietService.getSanPhamChiTietById(sanPhamChiTietId);
         CartItem cartItem = new CartItem(
                 product.getId(),
@@ -40,7 +39,6 @@ public class HienThiSanPhamController {
                 soLuongMua,
                 product.getDonGia()
         );
-        System.out.println("cartItem: " + cartItem);
 
         ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
         if (cart == null) {
@@ -48,8 +46,6 @@ public class HienThiSanPhamController {
             session.setAttribute("cart", cart);
         }
         cart.addItem(cartItem);
-        System.out.println("sanPhamChiTietId: " + sanPhamChiTietId + ", soLuong: " + soLuongMua);
-        System.out.println("Cart items after adding: " + cart);
         return "redirect:/customer/products";
     }
     @GetMapping("/cart")
