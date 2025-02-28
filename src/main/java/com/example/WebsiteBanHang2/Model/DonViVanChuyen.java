@@ -4,6 +4,8 @@ package com.example.WebsiteBanHang2.Model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 @Entity
 @Table(name = "don_vi_van_chuyen")
@@ -17,7 +19,7 @@ public class DonViVanChuyen {
     private String tenDonVi;
 
     @Column(name = "phi_van_chuyen")
-    private Double phiVanChuyen;
+    private BigDecimal phiVanChuyen;
 
     @Column(name = "ma_don_vi")
     private String maDonVi;

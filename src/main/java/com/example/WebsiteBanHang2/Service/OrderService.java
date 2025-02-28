@@ -7,5 +7,5 @@ import com.example.WebsiteBanHang2.Model.HoaDon;
 import com.example.WebsiteBanHang2.Model.UserAccount;
 
 public interface OrderService {
-    HoaDonDTO placeOrder(UserAccount khachHang, ShoppingCart cart, String diaChiGiaoHang, Integer idDonViVanChuyen);
+    HoaDon placeOrder(UserAccount khachHang, ShoppingCart cart, String diaChiGiaoHang, Integer idDonViVanChuyen);
 }

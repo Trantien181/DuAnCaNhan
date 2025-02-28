@@ -22,7 +22,6 @@ public class HoaDonServiceImpl implements HoaDonService {
         HoaDonDTO hoaDonDTO = new HoaDonDTO();
         hoaDonDTO.setId(hoaDon.getId());
         hoaDonDTO.setIdKhachHang(hoaDon.getIdKhachHang().getId());
-        hoaDonDTO.setIdNhanVien(hoaDon.getIdNhanVien().getId());
         hoaDonDTO.setMaHoaDon(hoaDon.getMaHoaDon());
         hoaDonDTO.setLoaiDon(hoaDon.getLoaiDon());
         hoaDonDTO.setTongTien(hoaDon.getTongTien());
@@ -31,6 +30,7 @@ public class HoaDonServiceImpl implements HoaDonService {
         hoaDonDTO.setNgayTao(hoaDon.getNgayTao());
         hoaDonDTO.setTongTien(hoaDon.getTongTien());
         hoaDonDTO.setTrangThai(hoaDon.getTrangThai());
+        hoaDonDTO.setDiaChiGiaoHang(hoaDon.getDiaChiGiaoHang());
         return hoaDonDTO;
     }
 
@@ -41,8 +41,6 @@ public class HoaDonServiceImpl implements HoaDonService {
         userAccount.setId(hoaDonDTO.getIdKhachHang());
         hoaDon.setIdKhachHang(userAccount);
         UserAccount userAccount1 = new UserAccount();
-        userAccount1.setId(hoaDonDTO.getIdNhanVien());
-        hoaDon.setIdNhanVien(userAccount1);
         hoaDon.setMaHoaDon(hoaDonDTO.getMaHoaDon());
         hoaDon.setLoaiDon(hoaDonDTO.getLoaiDon());
         hoaDon.setTongTien(hoaDonDTO.getTongTien());
@@ -52,6 +50,7 @@ public class HoaDonServiceImpl implements HoaDonService {
         hoaDon.setTrangThaiVanChuyen(hoaDonDTO.getTrangThaiVanChuyen());
         hoaDon.setNgayTao(hoaDonDTO.getNgayTao());
         hoaDon.setTrangThai(hoaDonDTO.getTrangThai());
+        hoaDon.setDiaChiGiaoHang(hoaDonDTO.getDiaChiGiaoHang());
         return hoaDon;
     }
 

@@ -20,15 +20,14 @@ public class HoaDon {
     @JoinColumn(name = "id_khach_hang")
     private UserAccount idKhachHang;
 
-    @ManyToOne
-    @JoinColumn(name = "id_nhan_vien")
-    private UserAccount idNhanVien;
-
     @Column(name = "ma_hoa_don")
     private String maHoaDon;
 
     @Column(name = "loai_don")
     private String loaiDon;
+
+    @Column(name = "dia_chi_giao_hang")
+    private String diaChiGiaoHang;
 
     @Column(name = "tong_tien")
     private BigDecimal tongTien;
@@ -38,7 +37,8 @@ public class HoaDon {
     private DonViVanChuyen idDonViVanChuyen;
 
     @Column(name = "trang_thai_van_chuyen")
-    private String trangThaiVanChuyen;
+    @Enumerated(EnumType.STRING)
+    private TrangThaiVanChuyen trangThaiVanChuyen;
 
     @Column(name = "ngay_tao")
     private LocalDate ngayTao;
@@ -46,4 +46,7 @@ public class HoaDon {
     @Column(name = "trang_thai")
     private Byte trangThai;
 
+    public enum TrangThaiVanChuyen {
+        PENDING, SHIPPED, DELIVERED, CANCELLED
+    }
 }
