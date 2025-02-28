@@ -20,22 +20,24 @@ public class ThuongHieuController {
     }
     @GetMapping("/detail/{id}")
     public String detail(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("cl", thuongHieuService.getThuongHieuById(id));
+        model.addAttribute("th", thuongHieuService.getThuongHieuById(id));
         return "ThuongHieu/Detail";
     }
     @GetMapping("/delete")
     public String delete(@RequestParam("id") Integer id) {
         thuongHieuService.deleteThuongHieu(id);
-        return "redirect:/ThuongHieu";
+        return "redirect:/thuonghieu";
     }
     @PostMapping("/add")
     public String add(ThuongHieuDTO ThuongHieu) {
+        System.out.println(ThuongHieu.getMaThuongHieu());
+        System.out.println(ThuongHieu.getTenThuongHieu());
         thuongHieuService.createEndUpdateThuongHieu(ThuongHieu);
-        return "redirect:/ThuongHieu";
+        return "redirect:/thuonghieu";
     }
     @PostMapping("/update")
     public String update(ThuongHieuDTO ThuongHieu) {
         thuongHieuService.createEndUpdateThuongHieu(ThuongHieu);
-        return "redirect:/ThuongHieu";
+        return "redirect:/thuonghieu";
     }
 }

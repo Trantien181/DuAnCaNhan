@@ -20,22 +20,22 @@ public class ThietKeController {
     }
     @GetMapping("/detail/{id}")
     public String detail(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("cl", thietKeService.getThietKeById(id));
+        model.addAttribute("tk", thietKeService.getThietKeById(id));
         return "ThietKe/Detail";
     }
     @GetMapping("/delete")
     public String delete(@RequestParam("id") Integer id) {
         thietKeService.deleteThietKe(id);
-        return "redirect:/ThietKe";
+        return "redirect:/thietke";
     }
     @PostMapping("/add")
     public String add(ThietKeDTO ThietKe) {
         thietKeService.createEndUpdateThietKe(ThietKe);
-        return "redirect:/ThietKe";
+        return "redirect:/thietke";
     }
     @PostMapping("/update")
     public String update(ThietKeDTO ThietKe) {
         thietKeService.createEndUpdateThietKe(ThietKe);
-        return "redirect:/ThietKe";
+        return "redirect:/thietke";
     }
 }

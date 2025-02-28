@@ -26,8 +26,8 @@ public class ThuongHieuServiceImpl implements ThuongHieuService {
         ThuongHieu dtoEntity = new ThuongHieu();
         dtoEntity.setId(dto.getId());
         dtoEntity.setTrangThai(dto.getTrangThai());
-        dto.setMaThuongHieu(dto.getMaThuongHieu());
-        dto.setTenThuongHieu(dto.getTenThuongHieu());
+        dtoEntity.setMaThuongHieu(dto.getMaThuongHieu());
+        dtoEntity.setTenThuongHieu(dto.getTenThuongHieu());
         return dtoEntity;
     }
     @Override

@@ -20,22 +20,22 @@ public class MauSacController {
     }
     @GetMapping("/detail/{id}")
     public String detail(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("cl", mauSacService.getMauSacById(id));
+        model.addAttribute("ms", mauSacService.getMauSacById(id));
         return "MauSac/Detail";
     }
     @GetMapping("/delete")
     public String delete(@RequestParam("id") Integer id) {
         mauSacService.deleteMauSac(id);
-        return "redirect:/MauSac";
+        return "redirect:/mausac";
     }
     @PostMapping("/add")
     public String add(MauSacDTO MauSac) {
         mauSacService.createEndUpdateMauSac(MauSac);
-        return "redirect:/MauSac";
+        return "redirect:/mausac";
     }
     @PostMapping("/update")
     public String update(MauSacDTO MauSac) {
         mauSacService.createEndUpdateMauSac(MauSac);
-        return "redirect:/MauSac";
+        return "redirect:/mausac";
     }
 }
