@@ -3,6 +3,7 @@ package com.example.WebsiteBanHang2.Model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import javax.management.relation.Role;
 import java.time.LocalDate;
 
 @Data
@@ -26,8 +27,9 @@ public class UserAccount {
     @Column(name = "last_name")
     private String lastName;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "role")
-    private String role;
+    private Role role;
 
     @Column(name = "status")
     private Byte status;
@@ -38,5 +40,8 @@ public class UserAccount {
     @Column(name = "created_at")
     private LocalDate createdAt;
 
+    public enum Role {
+        ADMIN, STAFF, CUSTOMER
+    }
 
 }

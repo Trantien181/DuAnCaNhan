@@ -35,7 +35,7 @@ public class AuthServiceImpl implements AuthService {
         user.setPassword(passwordEncoder.encode(form.getPassword()));
         user.setFirstName(form.getFirstName());
         user.setLastName(form.getLastName());
-        user.setRole("CUSTOMER");
+        user.setRole(UserAccount.Role.CUSTOMER);
         UserAccount savedUser = userAccountRepository.save(user);
 
         CustomerInfo customerInfo = new CustomerInfo();
