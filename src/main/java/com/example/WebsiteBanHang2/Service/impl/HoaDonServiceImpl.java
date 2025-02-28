@@ -21,12 +21,11 @@ public class HoaDonServiceImpl implements HoaDonService {
     private HoaDonDTO convertToDto(HoaDon hoaDon) {
         HoaDonDTO hoaDonDTO = new HoaDonDTO();
         hoaDonDTO.setId(hoaDon.getId());
-        hoaDonDTO.setIdKhachHang(hoaDon.getIdKhachHang().getId());
-        hoaDonDTO.setIdNhanVien(hoaDon.getIdNhanVien().getId());
+        hoaDonDTO.setIdKhachHang(hoaDon.getIdKhachHang());
         hoaDonDTO.setMaHoaDon(hoaDon.getMaHoaDon());
         hoaDonDTO.setLoaiDon(hoaDon.getLoaiDon());
         hoaDonDTO.setTongTien(hoaDon.getTongTien());
-        hoaDonDTO.setIdDonViVanChuyen(hoaDon.getIdDonViVanChuyen().getId());
+        hoaDonDTO.setIdDonViVanChuyen(hoaDon.getIdDonViVanChuyen());
         hoaDonDTO.setTrangThaiVanChuyen(hoaDon.getTrangThaiVanChuyen());
         hoaDonDTO.setNgayTao(hoaDon.getNgayTao());
         hoaDonDTO.setTongTien(hoaDon.getTongTien());
@@ -37,18 +36,12 @@ public class HoaDonServiceImpl implements HoaDonService {
     private HoaDon convertToEntity(HoaDonDTO hoaDonDTO) {
         HoaDon hoaDon = new HoaDon();
         hoaDon.setId(hoaDonDTO.getId());
-        UserAccount userAccount = new UserAccount();
-        userAccount.setId(hoaDonDTO.getIdKhachHang());
-        hoaDon.setIdKhachHang(userAccount);
-        UserAccount userAccount1 = new UserAccount();
-        userAccount1.setId(hoaDonDTO.getIdNhanVien());
-        hoaDon.setIdNhanVien(userAccount1);
+        hoaDon.setIdKhachHang(hoaDon.getIdKhachHang());
+        hoaDon.setIdNhanVien(hoaDon.getIdNhanVien());
         hoaDon.setMaHoaDon(hoaDonDTO.getMaHoaDon());
         hoaDon.setLoaiDon(hoaDonDTO.getLoaiDon());
         hoaDon.setTongTien(hoaDonDTO.getTongTien());
-        DonViVanChuyen donViVanChuyen = new DonViVanChuyen();
-        donViVanChuyen.setId(hoaDonDTO.getIdDonViVanChuyen());
-        hoaDon.setIdDonViVanChuyen(donViVanChuyen);
+        hoaDon.setIdDonViVanChuyen(hoaDonDTO.getIdDonViVanChuyen());
         hoaDon.setTrangThaiVanChuyen(hoaDonDTO.getTrangThaiVanChuyen());
         hoaDon.setNgayTao(hoaDonDTO.getNgayTao());
         hoaDon.setTrangThai(hoaDonDTO.getTrangThai());
@@ -80,5 +73,9 @@ public class HoaDonServiceImpl implements HoaDonService {
         HoaDon hoaDon = hoaDonRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Hóa đơn không tồn tại với ID: " + id));
         hoaDonRepository.delete(hoaDon);
+    }
+    @Override
+    public List<HoaDon> findByTrangThaiVanChuyen(HoaDon.TrangThaiVanChuyen trangThai){
+        return hoaDonRepository.findByTrangThaiVanChuyen(trangThai);
     }
 }

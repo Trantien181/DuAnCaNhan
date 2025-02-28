@@ -10,5 +10,6 @@ public interface HoaDonChiTietService {
     List<HoaDonChiTietDTO> getList();
     HoaDonChiTietDTO getHoaDonChiTietById(Integer id);
     HoaDonChiTietDTO createEndUpdateHoaDonChiTiet(HoaDonChiTietDTO hoaDonChiTietDTO);
+    List<HoaDonChiTietDTO> findByHoaDonId(Integer hoaDonId);
     void deleteHoaDonChiTiet(Integer id);
 }

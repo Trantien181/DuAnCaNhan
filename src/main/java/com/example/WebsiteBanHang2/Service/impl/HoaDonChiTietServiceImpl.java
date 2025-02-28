@@ -21,10 +21,8 @@ public class HoaDonChiTietServiceImpl implements HoaDonChiTietService {
     private HoaDonChiTietDTO convertToDto(HoaDonChiTiet hoaDonChiTiet) {
         HoaDonChiTietDTO hoaDonChiTietDTO = new HoaDonChiTietDTO();
         hoaDonChiTietDTO.setId(hoaDonChiTiet.getId());
-        HoaDonDTO hoaDonDTO = new HoaDonDTO();
-        hoaDonDTO.setId(hoaDonChiTiet.getHoaDonId().getId());
-        hoaDonChiTietDTO.setHoaDon(hoaDonDTO);
-        hoaDonChiTietDTO.setSanPhamChiTietId(hoaDonChiTiet.getSanPhamChiTietId().getId());
+        hoaDonChiTietDTO.setHoaDon(hoaDonChiTiet.getHoaDonId());
+        hoaDonChiTietDTO.setSanPhamChiTietId(hoaDonChiTiet.getSanPhamChiTietId());
         hoaDonChiTietDTO.setSoLuong(hoaDonChiTiet.getSoLuong());
         hoaDonChiTietDTO.setDonGia(hoaDonChiTiet.getDonGia());
         hoaDonChiTietDTO.setThanhTien(hoaDonChiTiet.getThanhTien());
@@ -35,12 +33,8 @@ public class HoaDonChiTietServiceImpl implements HoaDonChiTietService {
     private HoaDonChiTiet convertToEntity(HoaDonChiTietDTO hoaDonChiTietDTO) {
         HoaDonChiTiet hoaDonChiTiet = new HoaDonChiTiet();
         hoaDonChiTiet.setId(hoaDonChiTietDTO.getId());
-        HoaDon hoaDon = new HoaDon();
-        hoaDon.setId(hoaDonChiTietDTO.getHoaDon().getId());
-        hoaDonChiTiet.setHoaDonId(hoaDon);
-        SanPhamChiTiet sanPhamChiTiet = new SanPhamChiTiet();
-        sanPhamChiTiet.setId(hoaDonChiTietDTO.getSanPhamChiTietId());
-        hoaDonChiTiet.setSanPhamChiTietId(sanPhamChiTiet);
+        hoaDonChiTiet.setHoaDonId(hoaDonChiTietDTO.getHoaDon());
+        hoaDonChiTiet.setSanPhamChiTietId(hoaDonChiTietDTO.getSanPhamChiTietId());
         hoaDonChiTiet.setSoLuong(hoaDonChiTietDTO.getSoLuong());
         hoaDonChiTiet.setDonGia(hoaDonChiTietDTO.getDonGia());
         hoaDonChiTiet.setThanhTien(hoaDonChiTietDTO.getThanhTien());
@@ -73,5 +67,9 @@ public class HoaDonChiTietServiceImpl implements HoaDonChiTietService {
         HoaDonChiTiet hoaDonChiTiet = hoaDonChiTietRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Hóa đơn chi tiết không tồn tại với ID: " + id));
         hoaDonChiTietRepository.delete(hoaDonChiTiet);
+    }
+    @Override
+    public List<HoaDonChiTietDTO> findByHoaDonId(Integer hoaDonId){
+        return hoaDonChiTietRepository.findByHoaDonId_Id(hoaDonId);
     }
 }

@@ -37,13 +37,17 @@ public class HoaDon {
     @JoinColumn(name = "id_don_vi_van_chuyen")
     private DonViVanChuyen idDonViVanChuyen;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "trang_thai_van_chuyen")
-    private String trangThaiVanChuyen;
+    private TrangThaiVanChuyen trangThaiVanChuyen;
 
     @Column(name = "ngay_tao")
     private LocalDate ngayTao;
 
     @Column(name = "trang_thai")
     private Byte trangThai;
+    public enum TrangThaiVanChuyen {
+        PENDING, SHIPPED, DELIVERED, CANCELLED
+    }
 
 }
