@@ -9,8 +9,12 @@ import com.example.WebsiteBanHang2.Model.UserAccount;
 import java.util.List;
 
 public interface OrderService {
-    HoaDonDTO placeOrder(UserAccount khachHang, ShoppingCart cart, String diaChiGiaoHang, Integer idDonViVanChuyen);
     List<HoaDon> getPendingOrders();
+    List<HoaDon> getShippedOrders();
+    List<HoaDon> getDeliveredOrders();
+    List<HoaDon> getCancelledOrders();
     HoaDon cancelOrder(Integer orderId);
+    HoaDon confirmDelivered(Integer orderId);
     HoaDon confirmOrder(Integer orderId);
+    HoaDon placeOrder(UserAccount khachHang, ShoppingCart cart, String diaChiGiaoHang, Integer idDonViVanChuyen);
 }

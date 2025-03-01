@@ -18,21 +18,32 @@ public class StaffOrderController {
     private OrderService orderService;
 
     // Xem danh sách đơn hàng PENDING
-    @GetMapping("/pending")
+    @GetMapping("")
     public String getPendingOrders(Model model) {
-        model.addAttribute("orders", orderService.getPendingOrders());
+        model.addAttribute("Pendings", orderService.getPendingOrders());
+        model.addAttribute("Shippeds", orderService.getShippedOrders());
+        model.addAttribute("Delivereds", orderService.getDeliveredOrders());
+        model.addAttribute("Cancelleds", orderService.getCancelledOrders());
         return "OrderStatus/Order";
     }
 
     // Xác nhận đơn hàng
     @GetMapping("/{orderId}/confirm")
-    public ResponseEntity<HoaDon> confirmOrder(@PathVariable Integer orderId) {
-        return ResponseEntity.ok(orderService.confirmOrder(orderId));
+    public String confirmOrder(@PathVariable Integer orderId) {
+        orderService.confirmOrder(orderId);
+        return "redirect:/staff/orders";
+    }
+    // Xác nhận đơn hàng
+    @GetMapping("/{orderId}/confirmDelivered")
+    public String confirmDelivered(@PathVariable Integer orderId) {
+        orderService.confirmDelivered(orderId);
+        return "redirect:/staff/orders";
     }
 
     // Hủy đơn hàng
     @GetMapping("/{orderId}/cancel")
-    public ResponseEntity<HoaDon> cancelOrder(@PathVariable Integer orderId) {
-        return ResponseEntity.ok(orderService.cancelOrder(orderId));
+    public String cancelOrder(@PathVariable Integer orderId) {
+        orderService.cancelOrder(orderId);
+        return "redirect:/staff/orders";
     }
 }

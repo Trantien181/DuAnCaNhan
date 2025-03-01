@@ -69,7 +69,7 @@ public class HoaDonChiTietServiceImpl implements HoaDonChiTietService {
         hoaDonChiTietRepository.delete(hoaDonChiTiet);
     }
     @Override
-    public List<HoaDonChiTietDTO> findByHoaDonId(Integer hoaDonId){
+    public List<HoaDonChiTiet> findByHoaDonId(Integer hoaDonId){
         return hoaDonChiTietRepository.findByHoaDonId_Id(hoaDonId);
     }
 }

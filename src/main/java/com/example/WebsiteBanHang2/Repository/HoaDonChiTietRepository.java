@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface HoaDonChiTietRepository extends JpaRepository<HoaDonChiTiet, Integer> {
-    List<HoaDonChiTietDTO> findByHoaDonId_Id(Integer hoaDonId);
+    List<HoaDonChiTiet> findByHoaDonId_Id(Integer hoaDonId);
 
 }

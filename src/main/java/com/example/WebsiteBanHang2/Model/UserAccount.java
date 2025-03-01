@@ -2,14 +2,19 @@ package com.example.WebsiteBanHang2.Model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.management.relation.Role;
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.Collections;
 
 @Data
 @Entity
 @Table(name = "user_account")
-public class UserAccount {
+public class UserAccount implements UserDetails {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,8 +45,41 @@ public class UserAccount {
     @Column(name = "created_at")
     private LocalDate createdAt;
 
+    @OneToOne(mappedBy = "userId")
+    private CustomerInfo customerInfo;
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role.name()));
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return status != null && status == 1;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return status != null && status == 1;
+    }
+
     public enum Role {
         ADMIN, STAFF, CUSTOMER
     }
-
 }
